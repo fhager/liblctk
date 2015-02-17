@@ -35,7 +35,7 @@ string encipherCaesarStringX(string plain, char key) {
 string decipherCaesarStringX(string cipher, char key) {
 	return decipherCaesarString(&cipher, key);
 	}
-string crackCaesarStringX(string cipher) {
+CaesarResult crackCaesarStringX(string cipher) {
 	return crackCaesarString(&cipher);
 	}
 string encipherVigenereStringX(string plain, string key) {
@@ -47,7 +47,7 @@ string decipherVigenereStringX(string cipher, string key) {
 float calcICX(string cipher) {
 	return calcIC(&cipher);
 	}
-string crackVigenereStringX(string cipher) {
+VigenereResult crackVigenereStringX(string cipher) {
 	return crackVigenereString(&cipher);
 	}
 string encipherOTPStringX(string plain, int seed) {
@@ -70,6 +70,12 @@ string decipherPlayfairStringX(string cipher, string keysq) {
 #ifdef __EMSCRIPTEN__
 #include <emscripten/bind.h>
 EMSCRIPTEN_BINDINGS(liblctk) {
+	emscripten::class_<CaesarResult>("CaesarResult")
+		.property("key", &CaesarResult::key)
+		.property("text", &CaesarResult::text);
+	emscripten::class_<VigenereResult>("VigenereResult")
+		.property("key", &VigenereResult::key)
+		.property("text", &VigenereResult::text);	
 	emscripten::function("selectLanguage", &selectLanguage);
 	emscripten::function("cleanString", &cleanStringX);
 	emscripten::function("restorePunctuation", &restorePunctuationX);
@@ -91,9 +97,18 @@ EMSCRIPTEN_BINDINGS(liblctk) {
 
 #ifdef __CHAISCRIPT__
 #include <chaiscript/chaiscript.hpp>
+#include <chaiscript/dispatchkit/bootstrap.hpp>
 using namespace chaiscript;
 CHAISCRIPT_MODULE_EXPORT ModulePtr create_chaiscript_module_lctk() {
 	ModulePtr mptr(new Module());
+	mptr->add(user_type<CaesarResult>(), "CaesarResult");
+	mptr->add(bootstrap::basic_constructors<CaesarResult>("CaesarResult"));
+	mptr->add(fun(&CaesarResult::key), "key");
+	mptr->add(fun(&CaesarResult::text), "text");
+	mptr->add(user_type<VigenereResult>(), "VigenereResult");
+	mptr->add(bootstrap::basic_constructors<VigenereResult>("VigenereResult"));
+	mptr->add(fun(&VigenereResult::key), "key");
+	mptr->add(fun(&VigenereResult::text), "text");
 	mptr->add(fun(&selectLanguage), "selectLanguage");
 	mptr->add(fun(&cleanStringX), "cleanString");
 	mptr->add(fun(&restorePunctuationX), "restorePunctuation");
