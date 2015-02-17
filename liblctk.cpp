@@ -142,7 +142,7 @@ string decipherCaesarString(string *cipher, char key) {
  * Version: 0.2
  */
 
-string crackCaesarString(string *cipher) {
+CaesarResult crackCaesarString(string *cipher) {
 	string plain = "";
 	char bestkey = 0;
 	float offset = 0;
@@ -154,7 +154,10 @@ string crackCaesarString(string *cipher) {
 		bestoffset = (offset > bestoffset) ? offset : bestoffset;
 		}
 	plain = decipherCaesarString(cipher,bestkey);
-	return plain;
+	CaesarResult solution;
+	solution.key = bestkey;
+	solution.text = plain;
+	return solution;
 	}
 
 
@@ -224,7 +227,7 @@ float calcIC(string *cipher) {
 	return ic;
 	}
 
-string crackVigenereString(string *cipher) {
+VigenereResult crackVigenereString(string *cipher) {
 	string plain = "";
 	string key = "";
 	string bestkey = "";
@@ -315,7 +318,10 @@ string crackVigenereString(string *cipher) {
 		}
 	
 	plain = decipherVigenereString(cipher, &key);
-	return plain;
+	VigenereResult solution;
+	solution.key = key;
+	solution.text = plain;
+	return solution;
 	}
 
 
