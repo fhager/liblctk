@@ -38,6 +38,10 @@ using namespace std;
  * Common
  */
 
+void selectLanguage(string lc) {
+	letterfreq = letterfreqs.at(lc);
+	}
+
 string cleanString(string *text) {
 	string clean = "";
 	for (char c : *text) {
