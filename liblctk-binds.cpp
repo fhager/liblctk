@@ -79,18 +79,18 @@ EMSCRIPTEN_BINDINGS(liblctk) {
 	emscripten::function("selectLanguage", &selectLanguage);
 	emscripten::function("cleanString", &cleanStringX);
 	emscripten::function("restorePunctuation", &restorePunctuationX);
-    emscripten::function("encipherCaesarString", &encipherCaesarStringX);
-    emscripten::function("decipherCaesarString", &decipherCaesarStringX);
-    emscripten::function("crackCaesarString", &crackCaesarStringX);
-    emscripten::function("encipherVigenereString", &encipherVigenereStringX);
-    emscripten::function("decipherVigenereString", &decipherVigenereStringX);
-    emscripten::function("calcIC", &calcICX);
-    emscripten::function("crackVigenereString", &crackVigenereStringX);
-    emscripten::function("encipherOTPString", &encipherOTPStringX);
-    emscripten::function("decipherOTPString", &decipherOTPStringX);
-    emscripten::function("genKeySquare", &genKeySquareString);
-    emscripten::function("encipherPlayfairString", &encipherPlayfairStringX);
-    emscripten::function("decipherPlayfairString", &decipherPlayfairStringX);
+	emscripten::function("encipherCaesarString", &encipherCaesarStringX);
+	emscripten::function("decipherCaesarString", &decipherCaesarStringX);
+	emscripten::function("crackCaesarString", &crackCaesarStringX);
+	emscripten::function("encipherVigenereString", &encipherVigenereStringX);
+	emscripten::function("decipherVigenereString", &decipherVigenereStringX);
+	emscripten::function("calcIC", &calcICX);
+	emscripten::function("crackVigenereString", &crackVigenereStringX);
+	emscripten::function("encipherOTPString", &encipherOTPStringX);
+	emscripten::function("decipherOTPString", &decipherOTPStringX);
+	emscripten::function("genKeySquare", &genKeySquareString);
+	emscripten::function("encipherPlayfairString", &encipherPlayfairStringX);
+	emscripten::function("decipherPlayfairString", &decipherPlayfairStringX);
 }
 #endif
 
