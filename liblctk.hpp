@@ -55,6 +55,11 @@ map<char, float> letterfreq_de = {
 	{'J',0.191}, {'Y',0.032},
 	{'X',0.022}, {'Q',0.055}};
 
+map<string, map<char, float>*> letterfreqs = {
+	{"en", &letterfreq_en},
+	{"de", &letterfreq_de}};
+map<char, float> *letterfreq = &letterfreq_en;
+
 char alphasq[25] = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'};
 
 struct coords {
@@ -62,8 +67,6 @@ struct coords {
 	short column;
 	short index;
 	};
-
-map<char, float> *letterfreq = &letterfreq_en;
 
 string cleanString(string *text);
 map<char, float> calcLetterFreq(string *text);
