@@ -70,6 +70,7 @@ string decipherPlayfairStringX(string cipher, string keysq) {
 #ifdef __EMSCRIPTEN__
 #include <emscripten/bind.h>
 EMSCRIPTEN_BINDINGS(liblctk) {
+	emscripten::function("selectLanguage", &selectLanguage);
 	emscripten::function("cleanString", &cleanStringX);
 	emscripten::function("restorePunctuation", &restorePunctuationX);
     emscripten::function("encipherCaesarString", &encipherCaesarStringX);
@@ -93,6 +94,7 @@ EMSCRIPTEN_BINDINGS(liblctk) {
 using namespace chaiscript;
 CHAISCRIPT_MODULE_EXPORT ModulePtr create_chaiscript_module_lctk() {
 	ModulePtr mptr(new Module());
+	mptr->add(fun(&selectLanguage), "selectLanguage");
 	mptr->add(fun(&cleanStringX), "cleanString");
 	mptr->add(fun(&restorePunctuationX), "restorePunctuation");
 	mptr->add(fun(&encipherCaesarStringX), "encipherCaesarString");
