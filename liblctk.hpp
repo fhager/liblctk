@@ -21,6 +21,7 @@
  */
 
 #include <string>
+#include <utility>
 #include <map>
 using namespace std;
 
@@ -62,6 +63,16 @@ map<char, float> *letterfreq = &letterfreq_en;
 
 char alphasq[25] = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'};
 
+struct CaesarResult {
+	int key;
+	string text;
+	};
+
+struct VigenereResult {
+	string key;
+	string text;
+	};
+
 struct coords {
 	short row;
 	short column;
@@ -76,13 +87,13 @@ string restorePunctuation(string *wopunc, string *wpunc, bool encrypting);
 string encipherCaesarString(string *plain, char key);
 string decipherCaesarString(string *cipher, char key);
 
-string crackCaesarString(string *cipher);
+CaesarResult crackCaesarString(string *cipher);
 
 string encipherVigenereString(string *plain, string *key);
 string decipherVigenereString(string *cipher, string *key);
 
 float calcIC(string *cipher);
-string crackVigenereString(string *cipher);
+VigenereResult crackVigenereString(string *cipher);
 
 string encipherOTPString(string *plain, int seed);
 string decipherOTPString(string *cipher, int seed);
