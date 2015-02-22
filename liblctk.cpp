@@ -1,6 +1,6 @@
 /*
  * Author: Florian Hager
- * Version: 0.1
+ * Version: 0.2
  * License: BSD 2-Clause
  * 
  * Copyright (c) 2014, Florian Hager
@@ -98,6 +98,17 @@ string restorePunctuation(string *wopunc, string *wpunc, bool encrypting) {
 		text.pop_back();
 		}
 	return text;
+	}
+
+string restoreMonographicShiftKey(string *plain, string *cipher) {
+	string key = "";
+	for (int i = 0, n = plain->length(); i < n; ++i) {
+		char ap = (isupper(plain->at(i))) ? 'A' : 'a';
+		char ac = (isupper(cipher->at(i))) ? 'A' : 'a';
+		char shift = (cipher->at(i)-ac) - (plain->at(i)-ap);
+		key += (shift > 0) ? (shift+'A') : (shift+26+'A');
+		}
+	return key;
 	}
 
 
@@ -303,7 +314,7 @@ VigenereResult crackVigenereString(string *cipher) {
 		for (short int j = i; j < tidyciph.length(); j += keylen) {
 			substr += tidyciph.at(j);
 			}
-		// crack substring using caesar *cipher cracking technique
+		// crack substring using caesar cipher cracking technique
 		string plain = "";
 		char bestkey = 0;
 		float offset = 0;
