@@ -1,6 +1,6 @@
 /*
  * Author: Florian Hager
- * Version: 0.1
+ * Version: 0.2
  * License: BSD 2-Clause
  * 
  * Copyright (c) 2014, Florian Hager
@@ -28,6 +28,9 @@ string cleanStringX(string text) {
 	}
 string restorePunctuationX(string wopunc, string wpunc, bool encrypting) {
 	return restorePunctuation(&wopunc, &wpunc, encrypting);
+	}
+string restoreMonographicShiftKeyX(string plain, string cipher) {
+	return restoreMonographicShiftKey(&plain, &cipher);
 	}
 string encipherCaesarStringX(string plain, char key) {
 	return encipherCaesarString(&plain, key);
@@ -79,6 +82,7 @@ EMSCRIPTEN_BINDINGS(liblctk) {
 	emscripten::function("selectLanguage", &selectLanguage);
 	emscripten::function("cleanString", &cleanStringX);
 	emscripten::function("restorePunctuation", &restorePunctuationX);
+	emscripten::function("restoreMonographicShiftKey", &restoreMonographicShiftKeyX);
 	emscripten::function("encipherCaesarString", &encipherCaesarStringX);
 	emscripten::function("decipherCaesarString", &decipherCaesarStringX);
 	emscripten::function("crackCaesarString", &crackCaesarStringX);
@@ -112,6 +116,7 @@ CHAISCRIPT_MODULE_EXPORT ModulePtr create_chaiscript_module_lctk() {
 	mptr->add(fun(&selectLanguage), "selectLanguage");
 	mptr->add(fun(&cleanStringX), "cleanString");
 	mptr->add(fun(&restorePunctuationX), "restorePunctuation");
+	mptr->add(fun(&restoreMonographicShiftKeyX), "restoreMonographicShiftKey");
 	mptr->add(fun(&encipherCaesarStringX), "encipherCaesarString");
 	mptr->add(fun(&decipherCaesarStringX), "decipherCaesarString");
 	mptr->add(fun(&crackCaesarStringX), "crackCaesarString");
