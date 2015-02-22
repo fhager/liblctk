@@ -1,6 +1,6 @@
 /*
  * Author: Florian Hager
- * Version: 0.1
+ * Version: 0.2
  * License: BSD 2-Clause
  * 
  * Copyright (c) 2014, Florian Hager
@@ -83,6 +83,7 @@ string cleanString(string *text);
 map<char, float> calcLetterFreq(string *text);
 float calcOffset(string *text);
 string restorePunctuation(string *wopunc, string *wpunc, bool encrypting);
+string restoreMonographicShiftKey(string *plain, string *cipher);
 
 string encipherCaesarString(string *plain, char key);
 string decipherCaesarString(string *cipher, char key);
